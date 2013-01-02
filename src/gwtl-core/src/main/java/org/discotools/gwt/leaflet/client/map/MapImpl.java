@@ -144,7 +144,9 @@ class MapImpl {
         self.panInsideBounds(bound);
     }-*/;
 
-
+    public static native JSObject getPanes(JSObject self) /*-{
+	return self.getPanes();
+	}-*/;
 
 
 
