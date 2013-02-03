@@ -1,7 +1,6 @@
 package org.discotools.gwt.leaflet.client.map;
 
 import org.discotools.gwt.leaflet.client.jsobject.JSObject;
-import org.discotools.gwt.leaflet.client.types.Point;
 
 import com.google.gwt.dom.client.Element;
 
@@ -10,7 +9,14 @@ import com.google.gwt.dom.client.Element;
  * @author Lionel Leiva-Marcon
  */
 class MapImpl {
- 
+
+	public static native JSObject create(Element element, JSObject options) /*-{
+		var map = $wnd.L.map(element, options);
+		// Finished
+		return map; 
+	}-*/;
+
+	
 	public static native JSObject create(String name, JSObject options) /*-{
 	
 		// Verify map place holder element exists
