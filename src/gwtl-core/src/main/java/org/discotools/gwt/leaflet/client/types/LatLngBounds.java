@@ -148,5 +148,9 @@ public class LatLngBounds extends JSObjectWrapper {
     public   boolean contains(LatLngBounds latLngBounds){
         return LatLngBoundsImpl.contains(getJSObject(),latLngBounds.getJSObject());
 
-    }    
+    }
+
+    public LatLngBounds pad(double ratio){
+    	return new LatLngBounds(LatLngBoundsImpl.pad(getJSObject(), ratio));
+    }
 }
