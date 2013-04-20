@@ -16,11 +16,3 @@ notifications:
   email:
     recipients:
       - kenneth.gulbrandsoy@gmail.com
-
-# Set secure environment variables. These are only valid for repository kengu/gwt-leaflet! If you run this in a cloned repo, it will fail.
-env:
-  global:
-    # Encrypted username
-    - secure: "AOqBZ5c1y9fTEiWXFW4lfbGu3liX2AmLeQ8pQG52GQZq9gexMfTdH6uT2C7/\n+7STnohAL4TDsjr4E48L/wCfoyQKm/DQDQKoJJjJk9ZH8BUtHS4zp8ek34py\nJJz8HKWB6+n5IPi6hP75auGy+meZVQqqqBOg9rNGMc5pYM3orys="
-    # Encrypted password
-    - secure: "Wsz2p3wbXp0Y/yZ5vjR74nLbEfFb40mzP3Qzhyni89np6XLoOwx/K8eAQdTM\nJsSvSgvUVPR/xLzaKn7aX6UIFoGK04RAb0bg9cfPYbKdmIsjaf3XJRVrXHce\newQxIU+LszShHYd4otKzpuCa16Ww/WEtXdGJ8862XoGTolCaT7A="
