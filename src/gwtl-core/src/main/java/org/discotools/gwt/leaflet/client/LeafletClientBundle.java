@@ -15,14 +15,7 @@ public interface LeafletClientBundle
     @Source("leaflet.css")
     @CssResource.NotStrict
     CssResource css();
- 
-    @Source("images/zoom-in.png")
-    ImageResource zoomIn();
-
-    @Source("images/zoom-out.png")
-    ImageResource zoomOut();
 
     @Source("images/layers.png")
     ImageResource layers();
-
 }
