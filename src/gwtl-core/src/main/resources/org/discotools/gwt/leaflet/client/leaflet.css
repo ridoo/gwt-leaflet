@@ -284,8 +284,8 @@
 	-webkit-border-radius: 8px;
 	        border-radius: 8px;
 	}
-.leaflet-control-layers-toggle {
-	background-image: url(images/layers.png);
+@sprite .leaflet-control-layers-toggle {
+    gwt-image: "layers";
 	width: 36px;
 	height: 36px;
 	}
@@ -356,13 +356,15 @@
 	white-space: nowrap;
 	overflow: hidden;
 	}
-.leaflet-control-scale-line:not(:first-child) {
+/* GWT: Note the \ is to make it work with gwt css engine */
+.leaflet-control-scale-line:not\(:first-child\) {
 	border-top: 2px solid #777;
 	border-bottom: none;
 	margin-top: -2px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 	}
-.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+/* GWT: Note the \ is to make it work with gwt css engine */
+.leaflet-control-scale-line:not\(:first-child\):not\(:last-child\) {
 	border-bottom: 2px solid #777;
 	}
 
