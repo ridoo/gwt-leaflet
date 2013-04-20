@@ -15,4 +15,8 @@ public class MapPanes extends JSObjectWrapper{
 	public Element getOverlayPane(){
 		return getJSObject().getPropertyAsDomElement("overlayPane");
 	}
+
+	public Element getPane(MapPaneTypes type){
+		return getJSObject().getPropertyAsDomElement(type.name());
+	}
 }
