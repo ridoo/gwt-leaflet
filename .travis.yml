@@ -15,4 +15,4 @@ script:
 notifications:
   email:
     recipients:
-      - kenneth.gulbrandsoy@gmail.com
+      - peter@realityforge.org
