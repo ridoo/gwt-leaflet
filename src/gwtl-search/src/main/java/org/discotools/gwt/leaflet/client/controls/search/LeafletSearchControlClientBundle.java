@@ -3,6 +3,7 @@ package org.discotools.gwt.leaflet.client.controls.search;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.resources.client.ImageResource.ImageOptions;
 import com.google.gwt.resources.client.TextResource;
 
 public interface LeafletSearchControlClientBundle

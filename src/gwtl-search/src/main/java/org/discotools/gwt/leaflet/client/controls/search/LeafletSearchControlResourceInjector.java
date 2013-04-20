@@ -22,14 +22,6 @@ public class LeafletSearchControlResourceInjector
 	 */
 	protected void injectResources() {
 		bundle.css().ensureInjected();
-        // Ensure correct image url is included by an ugly patch
-        // Saves editing the css from search project
-        final String cssPatch =
-          ".leaflet-control-search .search-button {background: url('" +
-          bundle.searchIcon().getSafeUri().asString() +
-          "') no-repeat -1px -1px;}";
-        StyleInjector.injectStylesheet( cssPatch );
-
 		injectScript( bundle.baseScript().getText() );
 	}
 
