@@ -35,6 +35,10 @@ public class Map extends JSObjectWrapper implements EventProvider {
     public Map(String name, MapOptions options) {
         this(MapImpl.create(name, options.getJSObject()));
     } 
+
+    public Map(Element element, MapOptions options) {
+        this(MapImpl.create(element, options.getJSObject()));
+    } 
     
     /**
      * Sets the view of the map (geographical center and zoom).
@@ -169,6 +173,22 @@ public class Map extends JSObjectWrapper implements EventProvider {
     public int getZoom() {
         return MapImpl.getZoom(getJSObject());
     }
+    
+    /**
+     * 
+     * @return Returns the maximum zoom level of the map.
+     */
+    public int getMaxZoom() {
+        return MapImpl.getMaxZoom(getJSObject());
+    }
+    
+    /**
+     * 
+     * @return Returns the minimum zoom level of the map.
+     */
+    public int getMinZoom() {
+        return MapImpl.getMinZoom(getJSObject());
+    }
 
     /**
      * Checks if the map container size changed and updates the map if so — call it after you've changed the map size dynamically. If animate is true, map animates the update
@@ -196,5 +216,19 @@ public class Map extends JSObjectWrapper implements EventProvider {
     public Map panInsideBounds(LatLngBounds bounds) {
         MapImpl.panInsideBounds(getJSObject(),bounds.getJSObject());
         return this;
+    }
+    
+    public MapPanes getPanes(){
+    	return new MapPanes(MapImpl.getPanes(getJSObject()));
+    }
+    
+    /**
+     * Returns the maximum zoom level on which the given bounds fit to the map view in its entirety. If inside 
+     * (optional) is set to true, the method instead returns the minimum zoom level on which the map view fits 
+     * into the given bounds in its entirety.
+     * @return
+     */
+    public int getBoundsZoom(LatLngBounds bounds, boolean inside) {
+        return MapImpl.getBoundsZoom(getJSObject(), bounds.getJSObject(), inside);
     }
 }
