@@ -14,12 +14,15 @@
  *******************************************************************************/
 package org.discotools.gwt.leaflet.client.example;
 
+import org.discotools.gwt.leaflet.client.LeafletResourceInjector;
 import org.discotools.gwt.leaflet.client.Options;
 import org.discotools.gwt.leaflet.client.controls.ControlOptions;
+import org.discotools.gwt.leaflet.client.controls.ControlOptions.ControlPositions;
 import org.discotools.gwt.leaflet.client.controls.Position;
 import org.discotools.gwt.leaflet.client.controls.layers.Layers;
 import org.discotools.gwt.leaflet.client.controls.scale.Scale;
 import org.discotools.gwt.leaflet.client.controls.scale.ScaleOptions;
+import org.discotools.gwt.leaflet.client.controls.search.LeafletSearchControlResourceInjector;
 import org.discotools.gwt.leaflet.client.controls.search.Search;
 import org.discotools.gwt.leaflet.client.controls.search.SearchOptions;
 import org.discotools.gwt.leaflet.client.controls.zoom.Zoom;
@@ -30,6 +33,7 @@ import org.discotools.gwt.leaflet.client.events.handler.EventHandler;
 import org.discotools.gwt.leaflet.client.events.handler.EventHandlerManager;
 import org.discotools.gwt.leaflet.client.events.handler.EventRegisteredFunction;
 import org.discotools.gwt.leaflet.client.events.handler.EventHandler.Events;
+import org.discotools.gwt.leaflet.client.events.handler.LeafHandlerRegistration;
 import org.discotools.gwt.leaflet.client.jsobject.JSObject;
 import org.discotools.gwt.leaflet.client.layers.others.GeoJSON;
 import org.discotools.gwt.leaflet.client.layers.others.GeoJSONFeatures;
@@ -45,6 +49,7 @@ import org.discotools.gwt.leaflet.client.layers.vector.PolylineOptions;
 import org.discotools.gwt.leaflet.client.layers.vector.Rectangle;
 import org.discotools.gwt.leaflet.client.map.Map;
 import org.discotools.gwt.leaflet.client.map.MapOptions;
+import org.discotools.gwt.leaflet.client.marker.LeafletLabelResourceInjector;
 import org.discotools.gwt.leaflet.client.marker.Marker;
 import org.discotools.gwt.leaflet.client.marker.MarkerOptions;
 import org.discotools.gwt.leaflet.client.marker.MarkerWithLabel;
@@ -72,7 +77,11 @@ public class Example implements EntryPoint {
 	private LegendControl legendControl;
 
 	public void onModuleLoad() {
-	
+		
+		LeafletResourceInjector.ensureInjected();
+		LeafletLabelResourceInjector.ensureInjected();
+        LeafletSearchControlResourceInjector.ensureInjected();
+
 		// Required version: origin/master
 //		EPSG3395 vCRS_EPSG3395 = new EPSG3395();
 //		EPSG4326 vCRS_EPSG4326 = new EPSG4326();
@@ -128,7 +137,7 @@ public class Example implements EntryPoint {
 		//overlays.setProperty("Test",tile);
 		
 		ControlOptions controlOptions = new ControlOptions(); 
-		controlOptions.setPosition(Position.BOTTOM_RIGHT);
+		controlOptions.setPosition( ControlPositions.bottomright);
 
 		// LayerGroup
 		LatLng glatlng1 = new LatLng(59.920, 10.754);
@@ -234,21 +243,27 @@ public class Example implements EntryPoint {
         final Polygon pol = new Polygon(recs2, pathOptions);
         pol.addTo(map);
 
-        //whne click on map change editing
-        final EventRegisteredFunction clickeRegistered = EventHandlerManager.addEventHandler(map, Events.click, new EventHandler<MouseEvent>() {
+        //when click on map change editing
+        final LeafHandlerRegistration clickeRegistered =
+          EventHandlerManager.addEventHandler( map, Events.click, new EventHandler<MouseEvent>()
+        {
 
-            @Override
-            public void handle(MouseEvent event) {
-                GWT.log("Clicked on map:" + event.getLatLng());
-                map.fitBounds(pol.getBounds());
-                if (pol.editing().enabled()) {
-                    pol.editing().disable();
-                } else {
-                    pol.editing().enable();
-                }
-                EventHandlerManager.clearEventHandler(map, Events.click);
+          @Override
+          public void handle( MouseEvent event )
+          {
+            GWT.log( "Clicked on map:" + event.getLatLng() );
+            map.fitBounds( pol.getBounds() );
+            if ( pol.editing().enabled() )
+            {
+              pol.editing().disable();
             }
-        });
+            else
+            {
+              pol.editing().enable();
+            }
+            EventHandlerManager.clearEventHandler( map, Events.click );
+          }
+        } );
 		
 		// Add Scale Control 
 		GWT.log("Scale Control");
@@ -270,7 +285,7 @@ public class Example implements EntryPoint {
 		searchOptions.setZoom(15); 
 		searchOptions.setText("Search Area"); 
 		searchOptions.setTextErr("Not found"); 
-		searchOptions.setPosition(Position.TOP_RIGHT);
+		searchOptions.setPosition(ControlPositions.topright );
 		Search search = new Search(searchOptions);
 		search.addTo(map);
 		

@@ -7,6 +7,15 @@ package org.discotools.gwt.leaflet.client.layers.vector;
  */
 public class PolylineOptions extends PathOptions {
 
+    public PolylineOptions()
+    {
+    }
+
+	public PolylineOptions(String color, int weight, double opacity) {
+		setColor(color);
+		setOpacity(opacity);
+		setWeight(weight);
+	}
     public PathOptions setEditable(boolean  editable) {
         return (PathOptions)setProperty("editable", editable);
     }
